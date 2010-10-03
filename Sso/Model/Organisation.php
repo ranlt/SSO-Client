@@ -1,10 +1,7 @@
 <?php
-if (!class_exists('Sso_Model_Organisation', false)) {
 
 class Sso_Model_Organisation extends Sso_Model_Base
 {
-	protected $_primaryUser = NULL;
-
 	/**
 	 * Models internal mapping. This property
 	 * needs to define all of the available
@@ -19,12 +16,8 @@ class Sso_Model_Organisation extends Sso_Model_Base
 		'description',
 		'parent',
 		'roles',
-		'cwuser',               // stores the service manager for the organisation
 		'contacts',             // stores the set of company contacts for this organisation
-		'defaultremedyqueue',
 		'pid',                  // Company ID
-		'primaryUsername',      // Primary user to talk to service layer
-		'remedyId',				// Remedy ID
 	);
 	
 	/***
@@ -90,49 +83,7 @@ class Sso_Model_Organisation extends Sso_Model_Base
 		return $newdata;
 	}
 
-	public function getServiceManager() 
-	{
-		if ($this->cwuser) {
-			return Sso_Model_Base::factory('User', $this->cwuser);
-		}
-		return FALSE;
-	}
 
-	/**
-	 *  Retrieve the list of company contacts that this organisation stores.
-	 *	This is a JSON encoded list of company contacts information'.
-	 *  {
-	 *		"admin@cw":  {
-	 * 			"title": "media relationship manager" 
-	 *		},
-	 *		"john@cw": {
-	 *			"title": "employee relations manager"
-	 *		}
-	 *  }
-	 *
-	 *	@param	none
-	 *	@return array of company contacts. 
-	 */
-	public function getCompanyContacts()
-	{
-		$companyContacts = array();
-
-		if ($this->contacts) {	
-			
-			// decode the data to an assoc array and prep for display.
-			$list = json_decode($this->contacts, true);
-			
-			if (!is_null($list)) {			
-				foreach($list AS $contactId => $contactDetails) {
-					$companyContact = Sso_Model_Base::factory('User', $contactId);
-					$companyContact->title = $contactDetails['title'];
-					$companyContacts[] = $companyContact;
-				}
-			}
-		}
-		return $companyContacts;
-	}
-	
 	public function getAvailableUsers($allUsers) 
 	{
 		if ($this->contacts) {
@@ -153,56 +104,4 @@ class Sso_Model_Organisation extends Sso_Model_Base
 		}
 		return $allUsers;
 	}
-	
-	/**
-	 * find a specific company contact, if available.
-	 * 
-	 * @var string the id/username for the user being retrieved
-	 */
-	public function getCompanyContact($contactId)
-	{
-		$companyContact = Sso_Model_Base::factory('User', $contactId);
-
-		if ($this->contacts) {
-			$list = json_decode($this->contacts, true);
-			if (!is_null($list)) {			
-				$companyContact->title = $list[$contactId]['title'];
-			}
-		}
-		return $companyContact;
-	}
-
-	/**
-	 * Get the primary user of a company to call the service layer with
-	 *
-	 * @return Sso_Model_User
-	 */
-	public function getPrimaryUser()
-	{
-		// have we already retrieved the primary user?
-		if (NULL !== $this->_primaryUser) {
-			return $this->_primaryUser;
-		}
-
-		// not fetched yet, so if we have a primary user lets get the user object
-		if ($this->primaryUsername) {
-			$user = Sso_Model_Base::factoryCached('User', $this->primaryUsername);
-			if ($user->isLoaded()) {
-				$this->_primaryUser = $user;
-				return $this->_primaryUser;
-			}
-		}
-
-		// no primary user specified, so grab the first user we can find in SSO
-		$users = $this->findChildren('user');
-		if ($users instanceof Sso_Model_Iterator) {
-			$user = $users->current();
-			if ($user instanceof Sso_Model_User) {
-				$this->_primaryUser = $user;
-			}
-		}
-		return $this->_primaryUser;
-	}
-}
-
 }

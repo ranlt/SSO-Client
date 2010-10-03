@@ -56,8 +56,8 @@ class Sso_Model_Base
 			$cacheId .= is_string($id) ? md5($id) : md5(serialize($id));
 			if (FALSE === ($obj = $cache->load($cacheId))) {
 				$obj = self::factory($objectClass, $id, $multiCurl);
-				if ($obj->isLoaded() && Zend_Registry::isRegistered('mycwConfig')) {
-					$cacheConfig = Zend_Registry::get('mycwConfig')->modelcache->toArray();
+				if ($obj->isLoaded() && Zend_Registry::isRegistered('SsoConfig')) {
+					$cacheConfig = Zend_Registry::get('SsoConfig')->modelcache->toArray();
 					$cacheTimeout = 0;
 					if (isset($cacheConfig[strtolower($objectClass)])) {
 						$cacheTimeout = (int) $cacheConfig[strtolower($objectClass)];

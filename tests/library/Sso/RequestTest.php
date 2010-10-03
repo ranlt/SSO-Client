@@ -10,13 +10,13 @@ class Test_Request extends PHPUnit_Framework_TestCase {
 		'params' => array('var1' => 'val1', 'var2' => 'val2'),
 		'allowedErrors' => array(400, 418),
 		'fullRequest' => array(
-			'postParams' => array('username' => 'john@cw'),
+			'postParams' => array('username' => 'admin@myorg'),
 			'getParams' => array('limit' => 5, 'offset' => 10),
 			'urlParams' => array('user', 'test'),
 			'cookies' => array('token' => 'something'),
 			'method' => Sso_Request::POST
 		),
-		'fullRequestString' => 'POST /user/test?limit=5&offset=10 -d username=john%40cw -b token=something'
+		'fullRequestString' => 'POST /user/test?limit=5&offset=10 -d username=admin%40myorg -b token=something'
 	);
 
 	public function setup()

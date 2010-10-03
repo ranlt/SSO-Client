@@ -33,28 +33,28 @@ class Test_Base extends PHPUnit_Framework_TestCase {
 			'Sso_Model_User' => array
 			(
 				'model'  => 'User',
-				'id'     => 'admin@cw',
+				'id'     => 'admin@myorg',
 				'loaded' => TRUE,
 			)
 		),
 		'namespace' => 'testNS',
-		'stringUri' => 'http://sso.dev.alterededge.co.uk:81/',
+		'stringUri' => 'http://example.com/',
 		'options' => array(
-			'uri' => 'http://sso.dev.alterededge.co.uk:81/',
+			'uri' => 'http://example.com/',
 			'resultType' => Sso_Request::RESULT_OBJECT,
 			'classBase' => 'Sso_Test_'
 		),
-		'credentials' => array('username' => 'admin@cw', 'password' => 'password'),
+		'credentials' => array('username' => 'admin@myorg', 'password' => 'password'),
 		'users'    => array
 		(
-			'admin@cw',
-			'admin@cw',
+			'admin@myorg',
+			'admin@myorg',
 			'nonexistent@nowhere',
 		),
 		'createUser' => array
 		(
 			'username'  => 'test@client',
-			'organisation' => 'CW',
+			'organisation' => 'MyOrg',
 			'fullName' => 'Test Case',
 			'location' => 'Nowhere',
 			'phoneNumber' => '020333444555',
@@ -205,7 +205,7 @@ class Test_Base extends PHPUnit_Framework_TestCase {
 	public function testFindChildren()
 	{
 		// Setup an organisation
-		$organisation = Sso_Model_Base::factory('organisation', 'CW');
+		$organisation = Sso_Model_Base::factory('organisation', 'MyOrg');
 		// Run the method
 		$results = $organisation->findChildren('user');
 

@@ -3,21 +3,6 @@
  * Class for creating user passwords to a decent level of integrity
  * @category        Sso
  * @package         Sso_Password
- * @copyright       Copyright (c) 2010 Cable&Wireless
- * @author          B Hanlon <barney@ibuildings.com>
- * @version         Revision $LastChangedRevision$ by $LastChangedBy$ on $LastChangedDate$  
- * @access          public
- */
-
-
-/**
- * Class for creating user passwords to a decent level of integrity
- * @category        Sso
- * @package         Sso_Password
- * @copyright       Copyright (c) 2010 Cable&Wireless
- * @author          B Hanlon <barney@ibuildings.com>
- * @version         Revision $LastChangedRevision$ by $LastChangedBy$ on $LastChangedDate$  
- * @access          public
  */
 
 class Sso_Password extends Sso_Password_PasswordAbstract 
@@ -65,7 +50,6 @@ class Sso_Password extends Sso_Password_PasswordAbstract
      * Used (optionally) to assist in helping people remember their passwords
      *
      * @var array
-     * @todo Run this list past security to check they're happy
      */
     
     protected static $_easyToRememberNames = array(

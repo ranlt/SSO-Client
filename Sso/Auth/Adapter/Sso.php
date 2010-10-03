@@ -70,7 +70,7 @@ class Sso_Auth_Adapter_Sso implements Zend_Auth_Adapter_Interface
      * setCredential() - set the credential value to be used
      *
      * @param  string $credential
-     * @return Cw_Auth_Adapter_Sso Provides a fluent interface
+     * @return Sso_Auth_Adapter_Sso Provides a fluent interface
      */
     public function setCredential($credential)
     {

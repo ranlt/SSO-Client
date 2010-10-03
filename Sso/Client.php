@@ -94,7 +94,7 @@ class Sso_Client extends Sso_Client_Abstract
 	 * @param  string $password
 	 *
 	 * @return Model_Token
-	 * @throws Cw_Client_Exception_Unauthorised
+	 * @throws Sso_Client_Exception_Unauthorised
 	 */
 	public function authenticate($username, $password)
 	{

@@ -1,6 +1,6 @@
 This is a client library for the Lasso single sign on service api.
 
 Requires Zend Framework & PHPUnit for the testing.
-Tests default to using admin@adminorg
+Tests default to using admin@myorg
 
 For running the tests, ensure the URL of the SSO layer is included in TestHelper.php

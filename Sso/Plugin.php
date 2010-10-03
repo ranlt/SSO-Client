@@ -3,7 +3,6 @@
 abstract class Sso_Plugin
 {
     static $plugins = array (
-        'Salesforce',
     );
     
     public static function notify($subject)

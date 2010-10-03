@@ -33,18 +33,6 @@ class Sso_Model_Right extends Sso_Model_Base {
 	}
 
 	/**
-	 * Cannot use
-	 *
-	 * @param string $id 
-	 * @return self
-	 */
-         /*
-	public function find($id = NULL)
-	{
-		return $this;
-	}*/
-
-	/**
 	 * Save disabled as this model is
 	 * read only
 	 *

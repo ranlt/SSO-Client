@@ -1,10 +1,6 @@
 <?php
 class Sso_Model_Password extends Sso_Model_Base 
 {
-    /**
-     * Enter description here...
-     *
-     */
     const EMAIL_INVALID               = 401;
     const USER_NOT_FOUND              = 404;
     const USER_INSUFFICIENT_RIGHTS    = 403;
@@ -30,18 +26,12 @@ class Sso_Model_Password extends Sso_Model_Base
          * let's check to see if this email address is associated with a valid account
          * we define an account as valid if:
          * - if it exists (duh)
-         * - has MyCW role
+         * - has role
          **/
         
         if ($userModel = Sso_Model_Base::factory('User')) {
             if (!$userModel->fetchDisUserByDereEmailAddyKthx($emailAddress)) {
                 throw new Sso_Model_Exception('Email address not found', self::USER_NOT_FOUND);
-            }
-            if (!$userModel->hasRight('read', 'MyCW')) {
-                throw new Sso_Model_Exception(
-                    'User does not have rights to the portal', 
-                    self::USER_INSUFFICIENT_RIGHTS
-                );
             }
             // ok, they exist and have rights after all that.
 

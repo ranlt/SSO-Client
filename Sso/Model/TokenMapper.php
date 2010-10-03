@@ -7,18 +7,17 @@
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
  * @uses       Model_Token
- * @package    MyCW
  * @subpackage Model
  */
 class Sso_Model_TokenMapper extends Sso_Model_Mapper
 {
 	const CACHE_TIMEOUT = 300; // 300 seconds = 5 mins
-	const CACHE_ID_PREFIX = 'MyCW_SSO_Token_';
+	const CACHE_ID_PREFIX = 'CLIENT_SSO_Token_';
 
     /**
      * Save a token
      * 
-     * @throws Cw_Exception
+     * @throws Sso_Model_Exception
      */
     public function save(Model_Token $token)
     {

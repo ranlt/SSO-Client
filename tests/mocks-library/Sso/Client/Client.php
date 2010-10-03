@@ -16,7 +16,7 @@ class Sso_Client extends Sso_Client_Abstract
 	 */
 	protected $_data = array(
 		'hash' => 'e9fe807dcaea941277164856bf047c89a6c500f408e493be1480ca22c6dd1281',
-		'username' => 'admin@cw',
+		'username' => 'admin@myorg',
 		'accessTime' => time());
 
 	/**
@@ -102,7 +102,7 @@ class Sso_Client extends Sso_Client_Abstract
 	 * @param  string $password
 	 *
 	 * @return Model_Token
-	 * @throws Cw_Client_Exception_Unauthorised
+	 * @throws Sso_Client_Exception_Unauthorised
 	 */
 	public function authenticate($username, $password)
 	{

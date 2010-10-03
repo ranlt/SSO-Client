@@ -4,8 +4,7 @@
  * Sso_Model_Base objects, providing the Countable and Iterator
  * interfaces
  *
- * @package Sso_Model
- * @author Sam Clark
+ * @package Sso_Mode
  * @implements Countable, Iterator, SeekableIterator, ArrayAccess
  */
 class Sso_Model_Iterator implements Countable, Iterator, SeekableIterator, ArrayAccess

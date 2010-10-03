@@ -13,8 +13,8 @@ class Test_Client extends PHPUnit_Framework_TestCase {
 			'resultType' => Sso_Request::RESULT_OBJECT,
 			'classBase' => 'Sso_Test_'
 		),
-		'credentials' => array('username' => 'admin@cw', 'password' => 'password'),
-		'badCredentials' => array('username' => 'admin@cw', 'password' => 'fail')
+		'credentials' => array('username' => 'admin@myorg', 'password' => 'password'),
+		'badCredentials' => array('username' => 'admin@myorg', 'password' => 'fail')
 		);
 	
 	public function login($username, $password = null)
@@ -128,7 +128,7 @@ class Test_Client extends PHPUnit_Framework_TestCase {
 		$result = $this->login($this->fixtures['credentials']);
 		$this->logout();
 		$this->assertType('Sso_Model_Token', $result);
-		$this->assertEquals('admin@cw', $result->getUsername());
+		$this->assertEquals('admin@myorg', $result->getUsername());
 	}
 	
 	public function testAuthenticateFail() 
@@ -219,7 +219,7 @@ class Test_Client extends PHPUnit_Framework_TestCase {
 		$this->login($this->fixtures['credentials']);
 
 		$request = new Sso_Request(array(
-			'path' => '/user/admin@cw',
+			'path' => '/user/admin@myorg',
 			'resultType' => Sso_Request::RESULT_STRING
 		));
 		$this->client->storeRequest($request, 'test');
@@ -227,7 +227,7 @@ class Test_Client extends PHPUnit_Framework_TestCase {
 
 		$this->assertTrue(count($result['data']) > 0);
 		$this->assertArrayHasKey('username', $result['data']);
-		$this->assertEquals('admin@cw', $result['data']['username']);
+		$this->assertEquals('admin@myorg', $result['data']['username']);
 	}
 	
 	public function testCurlMulti()
@@ -235,12 +235,12 @@ class Test_Client extends PHPUnit_Framework_TestCase {
 		$this->login($this->fixtures['credentials']);
 
 		$request = new Sso_Request(array(
-			'path' => '/user/admin@cw',
+			'path' => '/user/admin@myorg',
 			'resultType' => Sso_Request::RESULT_ASSOC
 		));
 		$this->client->storeRequest($request, 'testgetuser');
 		$request = new Sso_Request(array(
-			'path' => '/organisation/CW',
+			'path' => '/organisation/MyOrg',
 			'resultType' => Sso_Request::RESULT_ASSOC
 		));
 		$this->client->storeRequest($request, 'testgetorg');
@@ -254,8 +254,8 @@ class Test_Client extends PHPUnit_Framework_TestCase {
 		$this->assertTrue(count($r2['data']) > 0);
 		$this->assertArrayHasKey('username', $r1['data'][0]);
 		$this->assertArrayHasKey('name', $r2['data'][0]);
-		$this->assertEquals('admin@cw', $r1['data'][0]['username']);
-		$this->assertEquals('CW', $r2['data'][0]['name']);
+		$this->assertEquals('admin@myorg', $r1['data'][0]['username']);
+		$this->assertEquals('MyOrg', $r2['data'][0]['name']);
 	}
 	/*
 	 * @todo cached tokens

@@ -3,20 +3,6 @@
  * Class for creating user passwords to a decent level of integrity
  * @category        Sso
  * @package         Sso_Password
- * @copyright       Copyright (c) 2010 Cable&Wireless
- * @author          B Hanlon <barney@ibuildings.com>
- * @version         Revision $LastChangedRevision$ by $LastChangedBy$ on $LastChangedDate$  
- * @access          public
- */
-
-/**
- * Class for creating user passwords to a decent level of integrity
- * @category        Sso
- * @package         Sso_Password
- * @copyright       Copyright (c) 2010 Cable&Wireless
- * @author          B Hanlon <barney@ibuildings.com>
- * @version         Revision $LastChangedRevision$ by $LastChangedBy$ on $LastChangedDate$  
- * @access          public
  */
 abstract class Sso_Password_PasswordAbstract
 {
