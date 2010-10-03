@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./TestHelper.php" colors="true">
+	<testsuite name="Commonlib Tests">
+		<directory>./library/Cwcl/</directory>
+		<directory>./library/Sso/</directory>
+	</testsuite>
+
+	<filter>
+		<whitelist>
+			<directory suffix=".php">../Sso/</directory>
+			<exclude>
+				<directory suffix=".php">../Sso/Plugin/</directory>
+			</exclude>
+			<directory suffix=".php">../Cwcl/</directory>
+		</whitelist>
+	</filter>
+</phpunit>
